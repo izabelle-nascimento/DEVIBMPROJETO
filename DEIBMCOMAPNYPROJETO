@@ -1,0 +1,22 @@
+# 1 - Armazene todos os nomes dentro de uma lista.
+# 2 - Armazene o dominio em uma variavel.
+# 3- Crie um dicionario para armazenar os e-mail. chae-> email ("doe.j")
+# 4 - Crie um dicionario com chae > e-mail final ("doe.j1"), value -> nome da pessoa ("James Doe")
+# esses dois dict são vazios, serão preenchidos com o tempo.
+# itere em todos os nomes dentro de um for
+
+names = ["Jhon Doe", "Peter Parker", "Mary Jane Watson-Parker", "James Doe", "Jhon Elvis Doe", "Jane Doe", "Penny Parker"]
+company_domain = "company.com"
+emails = {}
+final_mails ={}
+
+for name in names:
+    name_copy = name.replace('_', '')
+    words = name_copy.split()
+    words = list(reversed(words[:-1])) + [words[1]]
+    email = '-'.join(word.lower() if count == 0 else word[0].lower() for count, word in enumerate(reversed(words)))
+    if emails.get(email) is None:
+        emails[email] = 0
+    emails[email] +=1
+    final_mails[f'{email}{emails.get(email) if emails.get(email) !=1 else ""} = name
+print (', '.join([f'{name} <{email}@{company_domain}>' for email, name in final_mails.items()]))
